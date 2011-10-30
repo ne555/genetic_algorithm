@@ -1,0 +1,65 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iterator>
+#include <cstdlib>
+#include <limits>
+#include <ctime>
+using namespace std;
+
+template<class T>
+struct randomize{
+	typedef T value_type;
+	randomize(value_type lower, value_type upper):lower(lower), upper(upper){}
+	inline value_type operator()(){
+		value_type result = rand()/value_type(RAND_MAX);
+		return result*(upper-lower) + lower;
+	}
+	value_type lower, upper;
+};
+
+template<>
+inline int randomize<int>::operator()(){
+	return rand()%(upper-lower+1) + lower;
+}
+
+
+int main(int arc, char **argv){
+	numeric_limits<uli>::max()
+
+
+	srand( time(NULL) );
+	vector<int> v(5);
+	generate(
+		v.begin(),
+		v.end(),
+		randomize<int>(0, 9)
+	);
+	copy(
+		v.begin(), 
+		v.end(),
+		ostream_iterator<int> (cout, " ")
+	);
+	cout << endl;
+	return 0;
+}
+
+double eja(ulli x){
+	return x*sqrt(x);
+}
+
+class function{
+public:
+	double operator()(ulli value){
+		return f(value);
+	}
+private:
+	typedef double (*funcion) (ulli);
+	function( funcion f ): f(f){}
+
+	funcion f;
+};
+
+function fitness( eja );
+
+
