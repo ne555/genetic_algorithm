@@ -20,15 +20,20 @@ double fenotipo(uli v){
 double f1(uli v){
 	double value = fenotipo(v);
 	//return sin(cos(value));
-	return -value * sin (sqrt( fabs(value) ) );
+	return value * sin (sqrt( fabs(value) ) );
 }
 
 int main(int arc, char **argv){
+	const int n = 50;
+	float limit = 515;
 	srand( time(NULL) );
-	ic::poblacion p(50, f1);
+	ic::poblacion p(30, f1);
 	simulator s(p);
-	
+
+	cout << n << endl;
+	cout << -limit << ' ' << limit << endl;
 	s.run(1000, &cout);
+	cout << endl;
 
 	return 0;
 }

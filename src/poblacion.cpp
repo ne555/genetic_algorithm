@@ -2,12 +2,15 @@
 #include <algorithm>
 #include <utility>
 #include <cstdlib>
+#include <iostream>
+#include <iomanip>
 #include "poblacion.h"
 #include "util.h"
 using namespace std;
 
 typedef unsigned long int uli;
 typedef std::pair<uli, double> gen_valor;
+extern double fenotipo(uli v);
 
 namespace ic{
 	poblacion::poblacion(size_t tamanio, function fitness):
@@ -31,7 +34,7 @@ namespace ic{
 	void poblacion::siguiente_generacion(){
 		//seleccion de los padres, 
 		//mediante algoritmo de competencias
-		const float mutante = 0.05;
+		const float mutante = 0.32;
 		poblado new_age;
 		for(size_t K=0; K<size; ++K){
 			vector<int> padre = competir();
@@ -54,7 +57,7 @@ namespace ic{
 		//selecciona al azar n individuos
 		//devuelve los mejores
 		vector<int> mejores(2);
-		const size_t n = 5;
+		const size_t n = 3;
 
 		for(size_t K=0; K<mejores.size(); ++K){
 			int maxi = math::random::randomize<int>(0,size-1)();
@@ -73,5 +76,11 @@ namespace ic{
 	void poblacion::lucha_por_la_vida(){
 		for(size_t K=0; K<size; ++K)
 			puntaje[K] = fitness( popullation[K].value() );
+	}
+
+	void poblacion::print(std::ostream &out){
+		for(size_t K=0; K<size; ++K)
+			out << setprecision(9) << fenotipo(popullation[K].value()) << ' ';
+		out << endl;
 	}
 }

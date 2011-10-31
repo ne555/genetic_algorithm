@@ -1,12 +1,10 @@
 #ifndef POBLACION_H
 #define POBLACION_H
 
+#include <iostream>
 #include <vector>
 #include <utility>
 #include "cromosoma.h"
-
-
-	#include <iostream>
 
 namespace ic{
 	class poblacion{
@@ -21,10 +19,7 @@ namespace ic{
 		void siguiente_generacion();
 		gen_valor mejor();
 
-		void print(){
-			for(size_t K=0; K<size; ++K)
-				std::cerr << popullation[K].value() << ' ';
-		}
+		void print(std::ostream &);
 
 	private:
 		std::vector<int> competir() const;
