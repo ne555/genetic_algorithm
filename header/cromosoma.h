@@ -9,14 +9,14 @@ namespace ic{
 		typedef unsigned long int uli;
 		static const size_t size = 8*sizeof(uli);
 		typedef std::bitset<size> adn;
-		cromosoma(){}
+		cromosoma();
 		cromosoma(const cromosoma &a, const cromosoma &b); //sex
-		void randomize();
 		void mutate();
 		inline uli value() const{
 			return genes.to_ulong();
 		}
 	private:
+		void randomize();
 		adn genes;
 	};
 }
